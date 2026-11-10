@@ -3,12 +3,15 @@
 
 #include "staff.h"
 
-class Administrator : public Staff {
+#include <QString>
+
+class Administrator : public Staff
+{
 public:
     // create an administrator with their name, username, and staff id
-    Administrator(const std::string& name,
-                  const std::string& username,
-                  const std::string& staffId);
+    Administrator(const QString& name,
+                  const QString& username,
+                  const QString& staffId);
 
     // identify this user as an administrator
     UserRole getRole() const override;

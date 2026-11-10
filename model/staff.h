@@ -1,25 +1,26 @@
-
 #ifndef STAFF_H
 #define STAFF_H
 
 #include "user.h"
-#include <string>
 
-class Staff : public User {
+#include <QString>
+
+class Staff : public User
+{
 public:
     // create a staff member with their name, username, and staff id
-    Staff(const std::string& name,
-          const std::string& username,
-          const std::string& staffId);
+    Staff(const QString& name,
+          const QString& username,
+          const QString& staffId);
 
     // allow derived staff objects to be destroyed correctly
-    virtual ~Staff() = default;
+    ~Staff() override = default;
 
     // access the staff member's unique id
-    const std::string& getStaffId() const;
+    QString getStaffId() const;
 
 private:
-    std::string staffId;
+    QString staffId;
 };
 
 #endif
