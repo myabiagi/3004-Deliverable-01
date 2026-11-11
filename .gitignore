@@ -43,6 +43,10 @@ build/
 Build/
 build-*/
 
+# Qt Creator user-specific project settings
+*.pro.user
+*.pro.user.*
+
 # CMake generated files
 CMakeFiles/
 CMakeCache.txt

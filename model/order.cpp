@@ -19,6 +19,11 @@ std::shared_ptr<Customer> Order::getCustomer() const { return customer; }
 QString Order::getCustomerName() const { return customer ? customer->getName() : QString(); }
 QString Order::getCustomerUsername() const { return customer ? customer->getUsername() : QString(); }
 QDateTime Order::getPlacedAt() const { return placedAt; }
+
+QString Order::getPlacedAtDisplayString() const {
+    return placedAt.toString("yyyy-MM-dd:HH:mm");
+}
+
 const std::vector<OrderItem>& Order::getItems() const { return items; }
 qint64 Order::getSubtotalCents() const { return subtotalCents; }
 qint64 Order::getTaxCents() const { return taxCents; }

@@ -28,6 +28,13 @@ KitchenActionResult KitchenController::completeOrder(int orderNumber) {
         return result;
     }
 
+    // kitchen works the FIFO queue from the front
+    std::shared_ptr<Order> nextOrder = orderQueue.front();
+    if (nextOrder == nullptr || nextOrder->getOrderNumber() != orderNumber) {
+        result.message = "Only the next order in the queue can be completed.";
+        return result;
+    }
+
     // find the customer before changing the order
     std::shared_ptr<Customer> customer = order->getCustomer();
 

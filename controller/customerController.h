@@ -8,8 +8,14 @@
 #include "order.h"
 #include "orderRepository.h"
 
+#include <QString>
 #include <memory>
 #include <vector>
+
+struct ProfileUpdateResult {
+    bool success = false;
+    QString message;
+};
 
 // Provides customer-facing info like current account, cafe menu, current and historical orders placed by the customer user
 class CustomerController {
@@ -32,6 +38,10 @@ public:
 
     // return the customer's picked-up and cancelled order history
     std::vector<std::shared_ptr<Order>> getOrderHistory() const;
+
+    // update the logged-in customer's editable dashboard fields
+    ProfileUpdateResult updateEmail(const QString& email);
+    ProfileUpdateResult updateHomeAddress(const QString& homeAddress);
 
 private:
     SessionController& sessionController;

@@ -47,3 +47,45 @@ std::vector<std::shared_ptr<Order>> CustomerController::getOrderHistory() const 
 
     return orderRepository.getOrderHistory(customer->getUsername());
 }
+
+ProfileUpdateResult CustomerController::updateEmail(const QString& email) {
+    ProfileUpdateResult result;
+    std::shared_ptr<Customer> customer = getCurrentCustomer();
+
+    if (customer == nullptr) {
+        result.message = "A customer must be logged in.";
+        return result;
+    }
+
+    const QString trimmedEmail = email.trimmed();
+    if (trimmedEmail.isEmpty()) {
+        result.message = "Email address cannot be empty.";
+        return result;
+    }
+
+    customer->setEmail(trimmedEmail);
+    result.success = true;
+    result.message = "Email address updated.";
+    return result;
+}
+
+ProfileUpdateResult CustomerController::updateHomeAddress(const QString& homeAddress) {
+    ProfileUpdateResult result;
+    std::shared_ptr<Customer> customer = getCurrentCustomer();
+
+    if (customer == nullptr) {
+        result.message = "A customer must be logged in.";
+        return result;
+    }
+
+    const QString trimmedAddress = homeAddress.trimmed();
+    if (trimmedAddress.isEmpty()) {
+        result.message = "Home address cannot be empty.";
+        return result;
+    }
+
+    customer->setHomeAddress(trimmedAddress);
+    result.success = true;
+    result.message = "Home address updated.";
+    return result;
+}

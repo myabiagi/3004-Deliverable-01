@@ -16,6 +16,29 @@ If `qmake` isn't found, use the Qt kit's qmake path (or try `qmake6` if Qt 6 is 
 
 Exit status 0 indicates all checks passed. Failures appear as `FAIL:` lines.
 
+## Default login usernames
+
+Customers:
+- `elara.brightshield`
+- `finnick.stormrider`
+- `mira.willowstep`
+- `cedric.ashborne`
+- `lyra.moonwhisper`
+
+Kitchen staff:
+- `timmy.tortoise`
+- `rowan.emberpot`
+
+Cashiers:
+- `harold.hare`
+- `nora.quicktill`
+
+Manager:
+- `briar.stonekettle`
+
+Administrator:
+- `sage.ledgerkeep`
+
 The test suite checks default records, sessions, pricing, placement, second-order restriction, queue, completion, one-time loyalty points, and persistence in memory across logout/login.
 
 It intentionally does not test UI behavior, payment gateways, in-person order placement, cancellation workflows, inventory, or database persistence.

@@ -36,6 +36,8 @@ public:
     QString getCustomerName() const;
     QString getCustomerUsername() const;
     QDateTime getPlacedAt() const;
+    // course-required display format YYYY-MM-DD:HH:MM
+    QString getPlacedAtDisplayString() const;
     const std::vector<OrderItem>& getItems() const;
     qint64 getSubtotalCents() const;
     qint64 getTaxCents() const;
