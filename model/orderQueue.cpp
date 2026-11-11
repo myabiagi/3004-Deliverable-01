@@ -1,80 +1,32 @@
-#include "orderqueue.h"
+#include "orderQueue.h"
 
-bool OrderQueue::enqueue(const std::shared_ptr<Order>& order)
-{
-    if (order == nullptr)
-    {
-        return false;
-    }
-
-    // only paid, in-progress orders belong in the kitchen queue
-    if (order->getStatus() != OrderStatus::InProgress)
-    {
-        return false;
-    }
-
-    // prevent the same order from being added more than once
-    if (findByOrderNumber(order->getOrderNumber()) != nullptr)
-    {
-        return false;
-    }
-
-    orders.push_back(order);
-    return true;
+OrderQueue::OrderQueue(OrderRepository& repository) : repository(repository) {
 }
 
-std::shared_ptr<Order> OrderQueue::front() const
-{
-    if (orders.empty())
-    {
+std::shared_ptr<Order> OrderQueue::front() const {
+    auto orders = getOrders();
+    return orders.empty() ? nullptr : orders.front();
+}
+
+std::shared_ptr<Order> OrderQueue::findByOrderNumber(int orderNumber) const {
+    auto order = repository.findByOrderNumber(orderNumber);
+    // only paid, in-progress orders belong in the kitchen queue
+    if (!order || order->getStatus() != OrderStatus::InProgress) {
         return nullptr;
     }
-
-    return orders.front();
+    return order;
 }
 
-std::shared_ptr<Order>
-OrderQueue::findByOrderNumber(int orderNumber) const
-{
-    for (const std::shared_ptr<Order>& order : orders)
-    {
-        if (order->getOrderNumber() == orderNumber)
-        {
-            return order;
+std::vector<std::shared_ptr<Order>> OrderQueue::getOrders() const {
+    std::vector<std::shared_ptr<Order>> queuedOrders;
+    // retrieve in-progress orders in the order they were placed
+    for (const std::shared_ptr<Order>& order : repository.getAllOrders()) {
+        if (order->getStatus() == OrderStatus::InProgress) {
+            queuedOrders.push_back(order);
         }
     }
-
-    return nullptr;
+    return queuedOrders;
 }
 
-bool OrderQueue::removeByOrderNumber(int orderNumber)
-{
-    for (auto iterator = orders.begin();
-         iterator != orders.end();
-         ++iterator)
-    {
-        if ((*iterator)->getOrderNumber() == orderNumber)
-        {
-            orders.erase(iterator);
-            return true;
-        }
-    }
-
-    return false;
-}
-
-const std::deque<std::shared_ptr<Order>>&
-OrderQueue::getOrders() const
-{
-    return orders;
-}
-
-bool OrderQueue::isEmpty() const
-{
-    return orders.empty();
-}
-
-std::size_t OrderQueue::size() const
-{
-    return orders.size();
-}
+bool OrderQueue::isEmpty() const { return front() == nullptr; }
+std::size_t OrderQueue::size() const { return getOrders().size(); }

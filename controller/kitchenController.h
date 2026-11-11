@@ -1,38 +1,31 @@
 #ifndef KITCHENCONTROLLER_H
 #define KITCHENCONTROLLER_H
 
-#include "userdirectory.h"
-#include "orderqueue.h"
+#include "orderQueue.h"
 
 #include <QString>
 #include <memory>
 #include <vector>
 
-struct KitchenActionResult
-{
+struct KitchenActionResult {
     bool success = false;
     QString message;
 };
 
-class KitchenController
-{
+class KitchenController {
 public:
-    KitchenController(UserDirectory& userDirectory,
-                      OrderQueue& orderQueue);
+    explicit KitchenController(OrderQueue& orderQueue);
 
     // return queued orders in fifo order
-    std::vector<std::shared_ptr<Order>>
-    getQueuedOrders() const;
+    std::vector<std::shared_ptr<Order>> getQueuedOrders() const;
 
     // return one queued order
-    std::shared_ptr<Order>
-    getOrderDetails(int orderNumber) const;
+    std::shared_ptr<Order> getOrderDetails(int orderNumber) const;
 
     // change an order from in progress to completed
     KitchenActionResult completeOrder(int orderNumber);
 
 private:
-    UserDirectory& userDirectory;
     OrderQueue& orderQueue;
 };
 

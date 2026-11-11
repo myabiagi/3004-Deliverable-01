@@ -8,12 +8,20 @@ CONFIG += c++11
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+INCLUDEPATH += $$PWD/model $$PWD/controller
+
 SOURCES += \
     main.cpp \
     mainwindow.cpp
 
+SOURCES += $$files($$PWD/model/*.cpp)
+SOURCES += $$files($$PWD/controller/*.cpp)
+
 HEADERS += \
     mainwindow.h
+
+HEADERS += $$files($$PWD/model/*.h)
+HEADERS += $$files($$PWD/controller/*.h)
 
 FORMS += \
     mainwindow.ui

@@ -1,4 +1,4 @@
-#include "kitchenstaff.h"
+#include "kitchenStaff.h"
 
 // initialize the inherited staff information
 KitchenStaff::KitchenStaff(const QString& name,

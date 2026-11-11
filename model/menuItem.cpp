@@ -1,4 +1,4 @@
-#include "menuitem.h"
+#include "menuItem.h"
 
 MenuItem::MenuItem(
     int id,
