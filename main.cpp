@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 
+#include "applicationController.h"
 #include "customerController.h"
 #include "kitchenController.h"
 #include "orderController.h"
@@ -35,9 +36,16 @@ int main(int argc, char *argv[]) {
 
     // create controllers using the shared model objects
     SessionController sessionController(users);
+    ApplicationController applicationController(sessionController);
     CustomerController customerController(sessionController, menu, orders);
     OrderController orderController(sessionController, orders, pricingService);
     KitchenController kitchenController(orderQueue);
+
+    // Views are not wired yet; keep the non-view stack alive for D1 domain use.
+    Q_UNUSED(applicationController);
+    Q_UNUSED(customerController);
+    Q_UNUSED(orderController);
+    Q_UNUSED(kitchenController);
 
     // display the main application window
     MainWindow w;

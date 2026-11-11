@@ -1,3 +1,4 @@
+#include "applicationController.h"
 #include "customerController.h"
 #include "defaultDataLoader.h"
 #include "kitchenController.h"
@@ -63,9 +64,50 @@ int main(int argc, char* argv[]) {
     check(queue.isEmpty(), "historical orders do not enter kitchen queue");
 
     SessionController session(users);
+    ApplicationController application(session);
     CustomerController customerController(session, menu, orders);
     OrderController orderController(session, orders, pricing);
     KitchenController kitchenController(queue);
+
+    check(application.getCurrentWorkspace() == WorkspaceType::Login,
+          "application starts on the login workspace");
+    check(!application.loginAndSelectWorkspace("nonexistent"),
+          "application rejects unknown login");
+    check(application.getCurrentWorkspace() == WorkspaceType::Login,
+          "failed login leaves the login workspace");
+
+    check(application.loginAndSelectWorkspace("customer1"),
+          "customer1 login selects a workspace");
+    check(application.getCurrentWorkspace() == WorkspaceType::Customer,
+          "customer login opens the customer workspace");
+    application.logoutToLogin();
+    check(!application.hasActiveUser(), "application logout clears the session");
+    check(application.getCurrentWorkspace() == WorkspaceType::Login,
+          "application logout returns to the login workspace");
+
+    check(application.loginAndSelectWorkspace("kitchen1"),
+          "kitchen1 login selects a workspace");
+    check(application.getCurrentWorkspace() == WorkspaceType::Kitchen,
+          "kitchen login opens the kitchen workspace");
+    application.logoutToLogin();
+
+    check(application.loginAndSelectWorkspace("cashier1"),
+          "cashier1 login selects a workspace");
+    check(application.getCurrentWorkspace() == WorkspaceType::Staff,
+          "cashier login opens the staff workspace");
+    application.logoutToLogin();
+
+    check(application.loginAndSelectWorkspace("manager1"),
+          "manager1 login selects a workspace");
+    check(application.getCurrentWorkspace() == WorkspaceType::Staff,
+          "manager login opens the staff workspace");
+    application.logoutToLogin();
+
+    check(application.loginAndSelectWorkspace("admin1"),
+          "admin1 login selects a workspace");
+    check(application.getCurrentWorkspace() == WorkspaceType::Staff,
+          "administrator login opens the staff workspace");
+    application.logoutToLogin();
 
     for (int i = 1; i <= 5; ++i) {
         const QString username = QString("customer%1").arg(i);

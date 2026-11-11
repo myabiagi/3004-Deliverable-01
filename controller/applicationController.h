@@ -1,22 +1,20 @@
 #ifndef APPLICATIONCONTROLLER_H
 #define APPLICATIONCONTROLLER_H
 
-#include "sessioncontroller.h"
+#include "sessionController.h"
 
 #include <QString>
 #include <memory>
 
 // which UI surface MainWindow should show
-enum class WorkspaceType
-{
+enum class WorkspaceType {
     Login,
     Customer,
     Kitchen,
-    Staff   // cashier, manager, administrator -> for D1 these will be view only !!!
+    Staff // cashier, manager, and administrator in D1
 };
 
-class ApplicationController
-{
+class ApplicationController {
 public:
     explicit ApplicationController(SessionController& sessionController);
 
