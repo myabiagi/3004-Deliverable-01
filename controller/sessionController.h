@@ -1,14 +1,12 @@
-
 #ifndef SESSIONCONTROLLER_H
 #define SESSIONCONTROLLER_H
 
-#include "userdirectory.h"
+#include "userDirectory.h"
 
 #include <QString>
 #include <memory>
 
-class SessionController
-{
+class SessionController {
 public:
     // use the application's existing user directory
     explicit SessionController(UserDirectory& userDirectory);

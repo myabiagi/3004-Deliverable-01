@@ -1,4 +1,4 @@
-#include "ingredientrequirement.h"
+#include "ingredientRequirement.h"
 
 IngredientRequirement::IngredientRequirement(
     const std::shared_ptr<Ingredient>& ingredient,

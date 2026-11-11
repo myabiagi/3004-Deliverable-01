@@ -1,26 +1,21 @@
-#include "userdirectory.h"
+#include "userDirectory.h"
 
-bool UserDirectory::addUser(const std::shared_ptr<User>& user)
-{
-    if (user == nullptr)
-    {
+bool UserDirectory::addUser(const std::shared_ptr<User>& user) {
+    if (user == nullptr) {
         return false;
     }
 
     QString newUsername = user->getUsername().trimmed();
 
-    if (newUsername.isEmpty())
-    {
+    if (newUsername.isEmpty()) {
         return false;
     }
 
     // usernames must be unique ignoring capitalization
-    for (const std::shared_ptr<User>& existingUser : users)
-    {
+    for (const std::shared_ptr<User>& existingUser : users) {
         if (existingUser->getUsername().trimmed().compare(
                 newUsername,
-                Qt::CaseInsensitive) == 0)
-        {
+                Qt::CaseInsensitive) == 0) {
             return false;
         }
     }
@@ -30,17 +25,14 @@ bool UserDirectory::addUser(const std::shared_ptr<User>& user)
 }
 
 std::shared_ptr<User>
-UserDirectory::findByNameOrUsername(const QString& input) const
-{
+UserDirectory::findByNameOrUsername(const QString& input) const {
     QString searchText = input.trimmed();
 
-    if (searchText.isEmpty())
-    {
+    if (searchText.isEmpty()) {
         return nullptr;
     }
 
-    for (const std::shared_ptr<User>& user : users)
-    {
+    for (const std::shared_ptr<User>& user : users) {
         QString name = user->getName().trimmed();
         QString username = user->getUsername().trimmed();
 
@@ -51,8 +43,7 @@ UserDirectory::findByNameOrUsername(const QString& input) const
         bool usernameMatches =
             username.compare(searchText, Qt::CaseInsensitive) == 0;
 
-        if (nameMatches || usernameMatches)
-        {
+        if (nameMatches || usernameMatches) {
             return user;
         }
     }
@@ -61,7 +52,6 @@ UserDirectory::findByNameOrUsername(const QString& input) const
 }
 
 const std::vector<std::shared_ptr<User>>&
-UserDirectory::getUsers() const
-{
+UserDirectory::getUsers() const {
     return users;
 }

@@ -3,16 +3,11 @@
 
 #include <QtGlobal>
 #include <memory>
+#include "menuItem.h"
 
-#include "menuitem.h"
-
-class OrderItem
-{
+class OrderItem {
 public:
-    OrderItem(
-        const std::shared_ptr<MenuItem>& menuItem,
-        int quantity);
-
+    OrderItem(const std::shared_ptr<MenuItem>& menuItem, int quantity);
     std::shared_ptr<MenuItem> getMenuItem() const;
     int getQuantity() const;
     qint64 getUnitPriceCents() const;
@@ -21,9 +16,7 @@ public:
 private:
     std::shared_ptr<MenuItem> menuItem;
     int quantity;
-
-    // stores the item's price at the time the order is placed
     qint64 unitPriceCents;
 };
 
-#endif 
+#endif

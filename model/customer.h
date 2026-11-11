@@ -6,13 +6,7 @@
 #include <QString>
 #include <QtGlobal>
 
-#include <memory>
-#include <vector>
-
-class Order; // forward declaration
-
-class Customer : public User
-{
+class Customer : public User {
 public:
     // create a customer with their account information
     Customer(const QString& name,
@@ -45,17 +39,6 @@ public:
     void addAccountCredit(qint64 cents);
     bool deductAccountCredit(qint64 cents);
 
-    // manage the customer's current order
-    bool hasCurrentOrder() const;
-    std::shared_ptr<Order> getCurrentOrder() const;
-    bool setCurrentOrder(const std::shared_ptr<Order>& order);
-
-    // manage the customer's completed or cancelled order history
-    const std::vector<std::shared_ptr<Order>>&
-    getOrderHistory() const;
-
-    bool addOrderToHistory(const std::shared_ptr<Order>& order);
-
 private:
     QString loyaltyNumber;
     QString email;
@@ -63,12 +46,6 @@ private:
 
     int loyaltyPoints;
     qint64 accountCreditCents;
-
-    // points to the customer's one in-progress or completed order
-    std::shared_ptr<Order> currentOrder;
-
-    // stores the customer's picked-up and cancelled orders
-    std::vector<std::shared_ptr<Order>> orderHistory;
 };
 
 #endif
