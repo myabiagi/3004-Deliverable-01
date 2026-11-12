@@ -41,14 +41,8 @@ int main(int argc, char *argv[]) {
     OrderController orderController(sessionController, orders, pricingService);
     KitchenController kitchenController(orderQueue);
 
-    // Views are not wired yet; keep the non-view stack alive for D1 domain use.
-    Q_UNUSED(applicationController);
-    Q_UNUSED(customerController);
-    Q_UNUSED(orderController);
-    Q_UNUSED(kitchenController);
-
-    // display the main application window
-    MainWindow w;
+    // display the main application window; it hands each workspace the controllers it needs
+    MainWindow w(applicationController, customerController, orderController, kitchenController);
     w.show();
 
     return a.exec();
