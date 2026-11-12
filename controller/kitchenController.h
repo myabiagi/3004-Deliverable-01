@@ -7,26 +7,28 @@
 #include <memory>
 #include <vector>
 
+// result returned to the view after a kitchen action
 struct KitchenActionResult {
-    bool success = false;
-    QString message;
+  bool success = false;
+  QString message;
 };
 
 class KitchenController {
 public:
-    explicit KitchenController(OrderQueue& orderQueue);
+  // use the application's existing kitchen queue
+  explicit KitchenController(OrderQueue& orderQueue);
 
-    // return queued orders in fifo order
-    std::vector<std::shared_ptr<Order>> getQueuedOrders() const;
+  // retrieve pending orders in fifo order
+  std::vector<std::shared_ptr<Order>> getQueuedOrders() const;
 
-    // return one queued order
-    std::shared_ptr<Order> getOrderDetails(int orderNumber) const;
+  // retrieve the details of any queued order
+  std::shared_ptr<Order> getOrderDetails(int orderNumber) const;
 
-    // change an order from in progress to completed
-    KitchenActionResult completeOrder(int orderNumber);
+  // request completion of a queued order
+  KitchenActionResult completeOrder(int orderNumber);
 
 private:
-    OrderQueue& orderQueue;
+  OrderQueue& orderQueue;
 };
 
 #endif

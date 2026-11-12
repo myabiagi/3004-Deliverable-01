@@ -2,31 +2,38 @@
 #define PRICINGSERVICE_H
 
 #include "orderItem.h"
-#include <QtGlobal>
+
 #include <vector>
 
+// amounts calculated for an online order
 struct PriceBreakdown {
-    qint64 subtotalCents = 0;
-    qint64 taxCents = 0;
-    qint64 totalCents = 0;
+  int subtotalCents = 0;
+  int taxCents = 0;
+  int totalCents = 0;
 
-    int loyaltyPointsUsed = 0;
-    qint64 loyaltyValueCents = 0;
-    int loyaltyPointsEarned = 0;
+  int loyaltyPointsUsed = 0;
+  int loyaltyValueCents = 0;
+  int loyaltyPointsEarned = 0;
 
-    qint64 accountCreditUsedCents = 0;
-    qint64 amountChargedCents = 0;
+  int accountCreditUsedCents = 0;
+  int amountChargedCents = 0;
+
+  bool valid = false;
 };
 
 class PricingService {
 public:
-    PriceBreakdown calculate(const std::vector<OrderItem>& items, int requestedLoyaltyPoints,
-                             qint64 requestedAccountCreditCents, int availableLoyaltyPoints,
-                             qint64 availableAccountCreditCents) const;
+  // calculate order amounts using available points and account credit
+  PriceBreakdown calculate(const std::vector<OrderItem>& items,
+                           int requestedLoyaltyPoints, int requestedAccountCreditCents,
+                           int availableLoyaltyPoints, int availableAccountCreditCents) const;
 
 private:
-    qint64 calculateSubtotal(const std::vector<OrderItem>& items) const;
-    qint64 calculateTax(qint64 subtotalCents) const;
+  // calculate the cost before discounts and tax
+  int calculateSubtotal(const std::vector<OrderItem>& items) const;
+
+  // apply the d1 tax rate to the full subtotal
+  int calculateTax(int subtotalCents) const;
 };
 
 #endif

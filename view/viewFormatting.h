@@ -1,6 +1,7 @@
 #ifndef VIEWFORMATTING_H
 #define VIEWFORMATTING_H
 
+#include "menuItem.h"
 #include "order.h"
 #include "user.h"
 
@@ -12,13 +13,26 @@
 namespace ViewFormatting {
 
 // 1234 -> "$12.34"
-inline QString money(qint64 cents) {
+inline QString money(int cents) {
     const QString sign = cents < 0 ? QStringLiteral("-") : QString();
-    const qint64 absoluteCents = cents < 0 ? -cents : cents;
+    const int absoluteCents = qAbs(cents);
     return QStringLiteral("%1$%2.%3")
         .arg(sign)
         .arg(absoluteCents / 100)
         .arg(absoluteCents % 100, 2, 10, QLatin1Char('0'));
+}
+
+// human-readable menu categories for the GUI
+inline QString categoryName(MenuCategory category) {
+    switch (category) {
+    case MenuCategory::Sandwich:
+        return QStringLiteral("Sandwiches");
+    case MenuCategory::HotBeverage:
+        return QStringLiteral("Hot Beverages");
+    case MenuCategory::ColdBeverage:
+        return QStringLiteral("Cold Beverages");
+    }
+    return QString();
 }
 
 // human-readable user type for the GUI

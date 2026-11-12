@@ -74,9 +74,8 @@ void MenuView::on_addToCartButton_clicked()
     requestAdd(ui->menuTree->currentItem(), ui->quantitySpinBox->value());
 }
 
-void MenuView::on_menuTree_itemDoubleClicked(QTreeWidgetItem *item, int column)
+void MenuView::on_menuTree_itemDoubleClicked(QTreeWidgetItem *item, int)
 {
-    Q_UNUSED(column);
     requestAdd(item, 1);
 }
 

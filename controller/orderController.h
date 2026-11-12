@@ -1,49 +1,46 @@
 #ifndef ORDERCONTROLLER_H
 #define ORDERCONTROLLER_H
 
-#include "sessionController.h"
+#include "customer.h"
 #include "orderRepository.h"
 #include "pricingService.h"
-#include "customer.h"
+#include "sessionController.h"
 
 #include <QString>
 #include <memory>
 #include <vector>
 
+// result of an online order submission
 struct OrderPlacementResult {
-    bool success = false;
-    QString message;
-    std::shared_ptr<Order> order = nullptr;
+  bool success = false;
+  QString message;
+  std::shared_ptr<Order> order = nullptr;
 };
 
 class OrderController {
 public:
-    OrderController(SessionController& sessionController,
-                    OrderRepository& orderRepository,
-                    PricingService& pricingService);
+  // use the existing session, order repository and pricing service
+  OrderController(SessionController& sessionController,
+                  OrderRepository& orderRepository,
+                  PricingService& pricingService);
 
-    // calculate checkout values without placing an order
-    PriceBreakdown previewOnlineOrder(
-        const std::vector<OrderItem>& items,
-        int requestedLoyaltyPoints,
-        qint64 requestedAccountCreditCents) const;
+  // calculate checkout values without placing an order
+  PriceBreakdown previewOnlineOrder(const std::vector<OrderItem>& items,
+                                    int requestedLoyaltyPoints,
+                                    int requestedAccountCreditCents) const;
 
-    // create and submit an online order for the active customer
-    OrderPlacementResult placeOnlineOrder(
-        const std::vector<OrderItem>& items,
-        int requestedLoyaltyPoints,
-        qint64 requestedAccountCreditCents);
+  // submit an online order for the active customer
+  OrderPlacementResult placeOnlineOrder(const std::vector<OrderItem>& items,
+                                        int requestedLoyaltyPoints,
+                                        int requestedAccountCreditCents);
 
 private:
-    // return the logged-in user as a customer
-    std::shared_ptr<Customer> getCurrentCustomer() const;
+  // retrieve the active user as a customer
+  std::shared_ptr<Customer> getCurrentCustomer() const;
 
-    // ensure every selected item has a valid quantity and menu item
-    bool areOrderItemsValid(const std::vector<OrderItem>& items) const;
-
-    SessionController& sessionController;
-    OrderRepository& orderRepository;
-    PricingService& pricingService;
+  SessionController& sessionController;
+  OrderRepository& orderRepository;
+  PricingService& pricingService;
 };
 
 #endif

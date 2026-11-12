@@ -3,24 +3,22 @@
 
 #include "user.h"
 
-#include <QString>
-
 #include <memory>
 #include <vector>
 
 class UserDirectory {
 public:
-    // add a user if their username is unique
-    bool addUser(const std::shared_ptr<User>& user);
+  // add a user if their username is unique
+  bool addUser(const std::shared_ptr<User>& user);
 
-    // find a user by name or username
-    std::shared_ptr<User> findByNameOrUsername(const QString& input) const;
+  // find a user by their full name, username or staff id
+  std::shared_ptr<User> findByNameUsernameOrId(const QString& input) const;
 
-    // return all users without copying the vector
-    const std::vector<std::shared_ptr<User>>& getUsers() const;
+  // access all registered users without copying the collection
+  const std::vector<std::shared_ptr<User>>& getUsers() const;
 
 private:
-    std::vector<std::shared_ptr<User>> users;
+  std::vector<std::shared_ptr<User>> users;
 };
 
 #endif

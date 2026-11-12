@@ -94,7 +94,7 @@ void KitchenWorkspace::handleOrderSelected(int orderNumber)
     selectedOrderNumber = orderNumber;
 
     // any queued order can be viewed; only the front one can be completed
-    // (KitchenController::completeOrder also enforces this)
+    // (OrderQueue::completeFrontOrder enforces this)
     std::vector<std::shared_ptr<Order>> orders = kitchenController.getQueuedOrders();
     const bool isFrontOfQueue = !orders.empty() && orders.front()->getOrderNumber() == orderNumber;
 

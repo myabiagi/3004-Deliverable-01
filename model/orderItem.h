@@ -1,22 +1,28 @@
 #ifndef ORDERITEM_H
 #define ORDERITEM_H
 
-#include <QtGlobal>
-#include <memory>
 #include "menuItem.h"
+
+#include <memory>
 
 class OrderItem {
 public:
-    OrderItem(const std::shared_ptr<MenuItem>& menuItem, int quantity);
-    std::shared_ptr<MenuItem> getMenuItem() const;
-    int getQuantity() const;
-    qint64 getUnitPriceCents() const;
-    qint64 getTotalPriceCents() const;
+  // create a purchased item with its quantity and current unit price
+  OrderItem(const std::shared_ptr<MenuItem>& menuItem, int quantity);
+
+  // access purchased item information
+  std::shared_ptr<MenuItem> getMenuItem() const;
+  int getQuantity() const;
+  int getUnitPriceCents() const;
+  int getTotalPriceCents() const;
+
+  // check whether the item can be included in an order
+  bool isValid() const;
 
 private:
-    std::shared_ptr<MenuItem> menuItem;
-    int quantity;
-    qint64 unitPriceCents;
+  std::shared_ptr<MenuItem> menuItem;
+  int quantity;
+  int unitPriceCents;
 };
 
 #endif

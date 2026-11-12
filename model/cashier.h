@@ -3,18 +3,13 @@
 
 #include "staff.h"
 
-#include <QString>
-
-class Cashier : public Staff
-{
+class Cashier : public Staff {
 public:
-    // create a cashier with their name, username, and staff id
-    Cashier(const QString& name,
-            const QString& username,
-            const QString& staffId);
+  // create a cashier with their name, username and staff id
+  Cashier(const QString& name, const QString& username, const QString& staffId);
 
-    // identify this user as a cashier
-    UserRole getRole() const override;
+  // identify this user as a cashier
+  UserRole getRole() const override;
 };
 
 #endif

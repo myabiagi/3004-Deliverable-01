@@ -3,17 +3,18 @@
 
 #include <QString>
 
-class Ingredient
-{
+class Ingredient {
 public:
-    Ingredient(int id, const QString& name);
+  // create an ingredient with its unique id and name
+  Ingredient(int id, const QString& name);
 
-    int getId() const;
-    QString getName() const;
+  // access ingredient information
+  int getId() const;
+  QString getName() const;
 
 private:
-    int id;
-    QString name;
+  int id;
+  QString name;
 };
 
 #endif

@@ -51,7 +51,7 @@ void CheckoutView::addItem(const std::shared_ptr<MenuItem>& item, int quantity)
     ui->cartTable->insertRow(row);
 
     QTableWidgetItem *unitPriceCell = new QTableWidgetItem(ViewFormatting::money(item->getPriceCents()));
-    unitPriceCell->setData(UnitPriceCentsRole, static_cast<qlonglong>(item->getPriceCents()));
+    unitPriceCell->setData(UnitPriceCentsRole, item->getPriceCents());
 
     ui->cartTable->setItem(row, ItemColumn, new QTableWidgetItem(item->getName()));
     ui->cartTable->setItem(row, QuantityColumn, new QTableWidgetItem());
@@ -65,7 +65,7 @@ void CheckoutView::addItem(const std::shared_ptr<MenuItem>& item, int quantity)
 void CheckoutView::updateRow(int row)
 {
     const int quantity = cartLines[static_cast<std::size_t>(row)].second;
-    const qint64 unitPrice = ui->cartTable->item(row, UnitPriceColumn)->data(UnitPriceCentsRole).toLongLong();
+    const int unitPrice = ui->cartTable->item(row, UnitPriceColumn)->data(UnitPriceCentsRole).toInt();
 
     ui->cartTable->item(row, QuantityColumn)->setText(QString::number(quantity));
     ui->cartTable->item(row, LineTotalColumn)->setText(ViewFormatting::money(unitPrice * quantity));
@@ -90,17 +90,17 @@ int CheckoutView::getRequestedLoyaltyPoints() const
     return ui->pointsSpinBox->value();
 }
 
-qint64 CheckoutView::getRequestedAccountCreditCents() const
+int CheckoutView::getRequestedAccountCreditCents() const
 {
-    return qRound64(ui->creditSpinBox->value() * 100.0);
+    return qRound(ui->creditSpinBox->value() * 100.0);
 }
 
-void CheckoutView::setAvailableBalances(int loyaltyPoints, qint64 accountCreditCents)
+void CheckoutView::setAvailableBalances(int loyaltyPoints, int accountCreditCents)
 {
     // the spin boxes cannot ask for more than the customer has;
     // PricingService still decides how much can actually be applied
     ui->pointsSpinBox->setMaximum(qMax(0, loyaltyPoints));
-    ui->creditSpinBox->setMaximum(qMax<qint64>(0, accountCreditCents) / 100.0);
+    ui->creditSpinBox->setMaximum(qMax(0, accountCreditCents) / 100.0);
 
     ui->availablePointsLabel->setText(tr("Available: %1 points").arg(loyaltyPoints));
     ui->availableCreditLabel->setText(tr("Available: %1").arg(ViewFormatting::money(accountCreditCents)));
@@ -184,15 +184,13 @@ void CheckoutView::on_clearCartButton_clicked()
     clearCart();
 }
 
-void CheckoutView::on_pointsSpinBox_valueChanged(int value)
+void CheckoutView::on_pointsSpinBox_valueChanged(int)
 {
-    Q_UNUSED(value);
     emit checkoutChanged();
 }
 
-void CheckoutView::on_creditSpinBox_valueChanged(double value)
+void CheckoutView::on_creditSpinBox_valueChanged(double)
 {
-    Q_UNUSED(value);
     emit checkoutChanged();
 }
 

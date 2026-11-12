@@ -7,8 +7,7 @@ SessionController::SessionController(UserDirectory& userDirectory)
 bool SessionController::login(const QString& nameOrUsername) { // clear any previous session before trying to identify another user
     logout();
 
-    std::shared_ptr<User> matchingUser =
-        userDirectory.findByNameOrUsername(nameOrUsername);
+    std::shared_ptr<User> matchingUser = userDirectory.findByNameUsernameOrId(nameOrUsername);
 
     if (matchingUser == nullptr) {
         return false;

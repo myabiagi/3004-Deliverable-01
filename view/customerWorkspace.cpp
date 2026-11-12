@@ -74,9 +74,8 @@ void CustomerWorkspace::on_logoutButton_clicked()
     emit logoutRequested();
 }
 
-void CustomerWorkspace::on_tabWidget_currentChanged(int index)
+void CustomerWorkspace::on_tabWidget_currentChanged(int)
 {
-    Q_UNUSED(index);
 
     // dashboard and balances always show the latest in-memory data
     refreshCustomerData();
@@ -93,7 +92,7 @@ void CustomerWorkspace::loadMenu()
     };
 
     for (MenuCategory category : categories) {
-        menuView->addCategory(menuCategoryToString(category),
+        menuView->addCategory(ViewFormatting::categoryName(category),
                               customerController.getMenuItemsByCategory(category));
     }
 }

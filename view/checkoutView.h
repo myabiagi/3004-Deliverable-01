@@ -35,8 +35,8 @@ public:
 
     // redemption choices
     int getRequestedLoyaltyPoints() const;
-    qint64 getRequestedAccountCreditCents() const;
-    void setAvailableBalances(int loyaltyPoints, qint64 accountCreditCents);
+    int getRequestedAccountCreditCents() const;
+    void setAvailableBalances(int loyaltyPoints, int accountCreditCents);
 
     void showPriceBreakdown(const PriceBreakdown& price);
     void showMessage(const QString& message, bool isError);

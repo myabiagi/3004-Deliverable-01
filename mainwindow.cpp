@@ -58,7 +58,7 @@ void MainWindow::handleLoginRequested(const QString& nameOrUsername)
     // ApplicationController asks SessionController to identify the user,
     // then chooses the workspace for that user's type
     if (!applicationController.loginAndSelectWorkspace(nameOrUsername)) {
-        loginView->showError(tr("No user was found with that name or username."));
+        loginView->showError(tr("No user was found with that name, username, or staff ID."));
         return;
     }
 
