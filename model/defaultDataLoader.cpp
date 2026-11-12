@@ -112,7 +112,7 @@ bool DefaultDataLoader::loadUsers(UserDirectory& users) const {
 
   // two kitchen staff accounts
   if (!users.addUser(std::make_shared<KitchenStaff>(
-        "Timmy Tortoise", "timmy.tortoise", "K-1001")) ||
+        "Simon Siju", "simon.siju", "K-1001")) ||
       !users.addUser(std::make_shared<KitchenStaff>(
         "Rowan Emberpot", "rowan.emberpot", "K-1002"))) {
     return false;
@@ -120,7 +120,7 @@ bool DefaultDataLoader::loadUsers(UserDirectory& users) const {
 
   // two cashier accounts
   if (!users.addUser(std::make_shared<Cashier>(
-        "Harold Hare", "harold.hare", "C-2001")) ||
+        "Ishaan Bahl", "ishaan.bahl", "C-2001")) ||
       !users.addUser(std::make_shared<Cashier>(
         "Nora Quicktill", "nora.quicktill", "C-2002"))) {
     return false;

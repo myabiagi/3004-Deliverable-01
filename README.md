@@ -26,11 +26,11 @@ Customers:
 - `lyra.moonwhisper`
 
 Kitchen staff:
-- `timmy.tortoise`
+- `ishaan.bahl`
 - `rowan.emberpot`
 
 Cashiers:
-- `harold.hare`
+- `simon.siju`
 - `nora.quicktill`
 
 Manager:
