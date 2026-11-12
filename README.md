@@ -19,7 +19,7 @@ Exit status 0 indicates all checks passed. Failures appear as `FAIL:` lines.
 ## Default login usernames
 
 Customers:
-- `elara.brightshield`
+- `mya.biagi`
 - `finnick.stormrider`
 - `mira.willowstep`
 - `cedric.ashborne`

@@ -34,8 +34,8 @@ struct CustomerSeed {
 
 // five customer accounts with unique identification information
 const CustomerSeed customerSeeds[] = {
-  {"Elara Brightshield", "elara.brightshield", "LP-48219",
-   "elara.brightshield@hintonville.ca", "14 Willow Lane, Hintonville"},
+  {"Mya Biagi", "mya.biagi", "LP-48219",
+   "mya.biagi@hintonville.ca", "14 Willow Lane, Hintonville"},
   {"Finnick Stormrider", "finnick.stormrider", "LP-57304",
    "finnick.stormrider@hintonville.ca", "8 Ember Court, Hintonville"},
   {"Mira Willowstep", "mira.willowstep", "LP-61988",
