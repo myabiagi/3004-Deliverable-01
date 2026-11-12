@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DashboardView</class>
+ <widget class="QWidget" name="DashboardView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>950</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dashboard</string>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <item>
+    <layout class="QHBoxLayout" name="topLayout">
+     <item>
+      <widget class="QGroupBox" name="accountGroupBox">
+       <property name="title">
+        <string>My Account</string>
+       </property>
+       <layout class="QFormLayout" name="accountFormLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="nameLabel">
+          <property name="text">
+           <string>Name:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="nameValueLabel">
+          <property name="text">
+           <string>name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="usernameLabel">
+          <property name="text">
+           <string>Username:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="usernameValueLabel">
+          <property name="text">
+           <string>username</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="loyaltyNumberLabel">
+          <property name="text">
+           <string>Loyalty number:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="loyaltyNumberValueLabel">
+          <property name="text">
+           <string>loyalty number</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="emailLabel">
+          <property name="text">
+           <string>Email:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <layout class="QHBoxLayout" name="emailRowLayout">
+          <item>
+           <widget class="QLineEdit" name="emailLineEdit"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="saveEmailButton">
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="addressLabel">
+          <property name="text">
+           <string>Home address:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <layout class="QHBoxLayout" name="addressRowLayout">
+          <item>
+           <widget class="QLineEdit" name="addressLineEdit"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="saveAddressButton">
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="pointsBalanceLabel">
+          <property name="text">
+           <string>Loyalty points balance:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLabel" name="pointsBalanceValueLabel">
+          <property name="font">
+           <font>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>0 points</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="creditBalanceLabel">
+          <property name="text">
+           <string>Account credit balance:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QLabel" name="creditBalanceValueLabel">
+          <property name="font">
+           <font>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>$0.00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="2">
+         <widget class="QLabel" name="profileMessageLabel">
+          <property name="text">
+           <string>profile message</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="currentOrderGroupBox">
+       <property name="title">
+        <string>Current Order</string>
+       </property>
+       <layout class="QVBoxLayout" name="currentOrderLayout">
+        <item>
+         <widget class="QLabel" name="currentOrderLabel">
+          <property name="text">
+           <string>You have no current order.</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::RichText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="historyGroupBox">
+     <property name="title">
+      <string>Order History (5 most recent)</string>
+     </property>
+     <layout class="QVBoxLayout" name="historyLayout">
+      <item>
+       <widget class="QTableWidget" name="historyTable">
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Order #</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Date</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Type</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Items</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Final Price</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Charged</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Points Used</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Credit Used</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Points Earned</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Status</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

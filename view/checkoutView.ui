@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CheckoutView</class>
+ <widget class="QWidget" name="CheckoutView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Checkout</string>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Your Cart</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="cartTable">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>Item</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Qty</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Unit Price</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Line Total</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="cartButtonsLayout">
+     <item>
+      <widget class="QPushButton" name="removeItemButton">
+       <property name="text">
+        <string>Remove Selected</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="clearCartButton">
+       <property name="text">
+        <string>Clear Cart</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="cartButtonsSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="checkoutLayout">
+     <item>
+      <widget class="QGroupBox" name="rewardsGroupBox">
+       <property name="title">
+        <string>Pay With Rewards</string>
+       </property>
+       <layout class="QFormLayout" name="rewardsFormLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="pointsLabel">
+          <property name="text">
+           <string>Loyalty points to redeem:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="pointsSpinBox">
+          <property name="suffix">
+           <string> pts</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="availablePointsLabel">
+          <property name="text">
+           <string>Available: 0 points</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="pointsNoteLabel">
+          <property name="styleSheet">
+           <string notr="true">color: #b26a00;</string>
+          </property>
+          <property name="text">
+           <string>points note</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="creditLabel">
+          <property name="text">
+           <string>Account credit to apply:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QDoubleSpinBox" name="creditSpinBox">
+          <property name="prefix">
+           <string>$</string>
+          </property>
+          <property name="decimals">
+           <number>2</number>
+          </property>
+          <property name="maximum">
+           <double>0.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>1.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLabel" name="availableCreditLabel">
+          <property name="text">
+           <string>Available: $0.00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="2">
+         <widget class="QLabel" name="rewardsRulesLabel">
+          <property name="text">
+           <string>1 point = $1.00. Points can pay for up to 50% of the subtotal before tax. Orders that redeem points do not earn points.</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="summaryGroupBox">
+       <property name="title">
+        <string>Order Summary</string>
+       </property>
+       <layout class="QFormLayout" name="summaryFormLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="subtotalLabel">
+          <property name="text">
+           <string>Subtotal:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="subtotalValueLabel">
+          <property name="text">
+           <string>$0.00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="taxLabel">
+          <property name="text">
+           <string>Tax (15%):</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="taxValueLabel">
+          <property name="text">
+           <string>$0.00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="totalLabel">
+          <property name="text">
+           <string>Final price (incl. tax):</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="totalValueLabel">
+          <property name="text">
+           <string>$0.00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="pointsRedeemedLabel">
+          <property name="text">
+           <string>Loyalty points redeemed:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="pointsRedeemedValueLabel">
+          <property name="text">
+           <string>0 points (-$0.00)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="creditAppliedLabel">
+          <property name="text">
+           <string>Account credit applied:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLabel" name="creditAppliedValueLabel">
+          <property name="text">
+           <string>-$0.00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="amountDueLabel">
+          <property name="font">
+           <font>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Amount to be paid:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLabel" name="amountDueValueLabel">
+          <property name="font">
+           <font>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>$0.00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="pointsEarnedLabel">
+          <property name="text">
+           <string>Points earned when completed:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QLabel" name="pointsEarnedValueLabel">
+          <property name="text">
+           <string>0 points</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="placeOrderLayout">
+     <item>
+      <widget class="QLabel" name="messageLabel">
+       <property name="text">
+        <string>message</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="placeOrderButton">
+       <property name="minimumSize">
+        <size>
+         <width>160</width>
+         <height>36</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Place Order</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
