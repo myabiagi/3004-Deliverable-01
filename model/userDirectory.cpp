@@ -1,6 +1,10 @@
 #include "userDirectory.h"
 #include "staff.h"
 
+const std::vector<std::shared_ptr<User>>& UserDirectory::getUsers() const {
+  return users;
+}
+
 bool UserDirectory::addUser(const std::shared_ptr<User>& user) {
   if (user == nullptr) {
     return false;
