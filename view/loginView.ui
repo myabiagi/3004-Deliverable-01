@@ -90,7 +90,7 @@
      <item>
       <widget class="QLabel" name="promptLabel">
        <property name="text">
-        <string>Enter your name or username</string>
+        <string>Enter your full name, username, or staff ID</string>
        </property>
       </widget>
      </item>
@@ -103,7 +103,7 @@
         </size>
        </property>
        <property name="placeholderText">
-        <string>e.g. Elara Brightshield or elara.brightshield</string>
+        <string></string>
        </property>
        <property name="clearButtonEnabled">
         <bool>true</bool>

@@ -9,34 +9,36 @@
 class Order;
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class KitchenQueueView; }
+namespace Ui {
+  class KitchenQueueView;
+}
 QT_END_NAMESPACE
 
-// FIFO kitchen queue: order number, customer name and order date/time.
-// Emits orderSelected when the kitchen staff clicks a row.
-class KitchenQueueView : public QWidget
-{
-    Q_OBJECT
+// displays the kitchen queue and allows staff to select an order
+class KitchenQueueView : public QWidget {
+  Q_OBJECT
 
 public:
-    explicit KitchenQueueView(QWidget *parent = nullptr);
-    ~KitchenQueueView();
+  explicit KitchenQueueView(QWidget* parent = nullptr);
+  ~KitchenQueueView();
 
-    void showOrders(const std::vector<std::shared_ptr<Order>>& orders);
+  // display pending orders in fifo order
+  void showOrders(const std::vector<std::shared_ptr<Order>>& orders);
 
-    // select the row for this order; returns false if it is not in the queue
-    bool selectOrder(int orderNumber);
+  // select an order or return false if it is not in the queue
+  bool selectOrder(int orderNumber);
 
-    void clear();
+  // clear the queue display
+  void clear();
 
 signals:
-    void orderSelected(int orderNumber);
+  void orderSelected(int orderNumber);
 
 private slots:
-    void on_queueTable_itemSelectionChanged();
+  void on_queueTable_itemSelectionChanged();
 
 private:
-    Ui::KitchenQueueView *ui;
+  Ui::KitchenQueueView* ui;
 };
 
-#endif // KITCHENQUEUEVIEW_H
+#endif

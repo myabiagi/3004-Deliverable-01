@@ -23,7 +23,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Order Queue (first in, first out)</string>
+      <string>Order Queue</string>
      </property>
     </widget>
    </item>

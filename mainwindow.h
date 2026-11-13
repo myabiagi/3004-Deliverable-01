@@ -15,42 +15,43 @@ class KitchenWorkspace;
 class StaffWorkspace;
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+  class MainWindow;
+}
 QT_END_NAMESPACE
 
-// The single application window. It shows one screen at a time in a QStackedWidget:
-// LoginView first, then only the workspace that matches the identified user's type.
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
+// displays the login screen or the workspace for the current user
+class MainWindow : public QMainWindow {
+  Q_OBJECT
 
 public:
-    // the feature controllers are only passed through to the workspaces that own them;
-    // MainWindow itself keeps only the ApplicationController for navigation
-    MainWindow(ApplicationController& applicationController,
-               CustomerController& customerController,
-               OrderController& orderController,
-               KitchenController& kitchenController,
-               QWidget *parent = nullptr);
-    ~MainWindow();
+  // use the existing controllers to coordinate navigation and workspaces
+  MainWindow(ApplicationController& applicationController,
+             CustomerController& customerController,
+             OrderController& orderController,
+             KitchenController& kitchenController,
+             QWidget* parent = nullptr);
+  ~MainWindow();
 
 private slots:
-    void handleLoginRequested(const QString& nameOrUsername);
-    void handleLogoutRequested();
+  // respond to login and logout requests from the views
+  void handleLoginRequested(const QString& nameOrUsername);
+  void handleLogoutRequested();
 
 private:
-    // switch the stacked widget to the workspace chosen by ApplicationController
-    bool showWorkspaceForCurrentUser();
+  // display the workspace selected by the application controller
+  bool showWorkspaceForCurrentUser();
 
-    // wipe everything the previous user could see
-    void clearAllScreens();
+  // clear information belonging to the previous user
+  void clearAllScreens();
 
-    Ui::MainWindow *ui;
-    ApplicationController& applicationController;
+  Ui::MainWindow* ui;
+  ApplicationController& applicationController;
 
-    LoginView* loginView;
-    CustomerWorkspace* customerWorkspace;
-    KitchenWorkspace* kitchenWorkspace;
-    StaffWorkspace* staffWorkspace;
+  LoginView* loginView;
+  CustomerWorkspace* customerWorkspace;
+  KitchenWorkspace* kitchenWorkspace;
+  StaffWorkspace* staffWorkspace;
 };
-#endif // MAINWINDOW_H
+
+#endif

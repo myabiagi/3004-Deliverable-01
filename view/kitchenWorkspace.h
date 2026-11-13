@@ -9,43 +9,48 @@ class KitchenQueueView;
 class OrderDetailsView;
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class KitchenWorkspace; }
+namespace Ui {
+  class KitchenWorkspace;
+}
 QT_END_NAMESPACE
 
-// Kitchen staff screen. Owns the order queue and order details views and is the
-// only kitchen view that talks to KitchenController.
-class KitchenWorkspace : public QWidget
-{
-    Q_OBJECT
+// coordinates the kitchen queue and order details views
+class KitchenWorkspace : public QWidget {
+  Q_OBJECT
 
 public:
-    explicit KitchenWorkspace(KitchenController& kitchenController, QWidget *parent = nullptr);
-    ~KitchenWorkspace();
+  explicit KitchenWorkspace(KitchenController& kitchenController, QWidget* parent = nullptr);
+  ~KitchenWorkspace();
 
-    void loadForUser(const QString& staffName);
-    void clear();
+  // load the kitchen screen for the current staff member
+  void loadForUser(const QString& staffName);
+
+  // clear the previous staff member's screen
+  void clear();
 
 signals:
-    void logoutRequested();
+  void logoutRequested();
 
 private slots:
-    void on_logoutButton_clicked();
-    void on_refreshButton_clicked();
+  void on_logoutButton_clicked();
+  void on_refreshButton_clicked();
 
-    void handleOrderSelected(int orderNumber);
-    void handleCompleteRequested(int orderNumber);
+  // respond to requests from the child views
+  void handleOrderSelected(int orderNumber);
+  void handleCompleteRequested(int orderNumber);
 
 private:
-    // reload the FIFO queue and keep the selected order (or the front order) in the details pane
-    void refreshQueue();
+  // refresh the queue while preserving the selected order when possible
+  void refreshQueue();
 
-    Ui::KitchenWorkspace *ui;
-    KitchenController& kitchenController;
+  Ui::KitchenWorkspace* ui;
+  KitchenController& kitchenController;
 
-    KitchenQueueView* queueView;
-    OrderDetailsView* detailsView;
+  KitchenQueueView* queueView;
+  OrderDetailsView* detailsView;
 
-    int selectedOrderNumber; // -1 when nothing is selected
+  // -1 indicates that no order is selected
+  int selectedOrderNumber;
 };
 
-#endif // KITCHENWORKSPACE_H
+#endif

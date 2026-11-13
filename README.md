@@ -1,22 +1,19 @@
-# DragonEndPOS D1 Model/Controller integration tests
+# DragonEndPOS — Deliverable 1
 
-Put the two files in a `tests/` directory in the project root, alongside `model/`, `controller/`, and `DragonEndCafePOS.pro`.
+## Requirements
 
-On your Ubuntu VM, run:
+- Course Ubuntu virtual machine (or OpenStack environment) with Qt Creator 6.0.2 and the provided Qt Widgets development kit
+- qmake build system included with the course Qt installation
 
-```bash
-mkdir -p build-tests
-cd build-tests
-qmake ../tests/d1_tests.pro
-make -j2
-./d1_tests
-```
+## Installation and launch in Qt Creator
 
-If `qmake` isn't found, use the Qt kit's qmake path (or try `qmake6` if Qt 6 is installed).
+1. Extract the submission ZIP into a folder on the course VM. Keep the directory structure unchanged.
+2. Open Qt Creator. Select "File > Open File or Project", then open `DragonEndCafePOS.pro` from the extracted folder.
+3. Select "Build > Build Project" (or press Ctrl+B).
+4. Select "Build > Run" (or press Ctrl+R).
+5. The Dragon's End Café identification window appears.
 
-Exit status 0 indicates all checks passed. Failures appear as `FAIL:` lines.
-
-## Default login usernames
+## Default account identifiers
 
 Customers:
 - `mya.biagi`
@@ -26,11 +23,11 @@ Customers:
 - `lyra.moonwhisper`
 
 Kitchen staff:
-- `ishaan.bahl`
+- `simon.siju`
 - `rowan.emberpot`
 
 Cashiers:
-- `simon.siju`
+- `ishaan.bahl`
 - `nora.quicktill`
 
 Manager:
@@ -39,6 +36,14 @@ Manager:
 Administrator:
 - `sage.ledgerkeep`
 
-The test suite checks default records, sessions, pricing, placement, second-order restriction, queue, completion, one-time loyalty points, and persistence in memory across logout/login.
+## Deliverable 1 scope / not implemented
 
-It intentionally does not test UI behavior, payment gateways, in-person order placement, cancellation workflows, inventory, or database persistence.
+The following full-project features are excluded from the Deliverable 1 prototype:
+
+- External payment authorization (D1 orders are automatically recorded as paid)
+- Online order cancellation and refunds
+- In-person cashier ordering and pickup transitions
+- Inventory quantities, sold-out handling, and ingredient stock deduction
+- Manager menu/inventory editing and vendor orders
+- Administrator account creation and reports
+- Audit logs, session timeout, and database/file persistence

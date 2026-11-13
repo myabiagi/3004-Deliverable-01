@@ -9,60 +9,61 @@
 #include <utility>
 #include <vector>
 
-#include "pricingService.h" // PriceBreakdown (display only)
+#include "pricingService.h"
 
 class MenuItem;
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class CheckoutView; }
+namespace Ui {
+  class CheckoutView;
+}
 QT_END_NAMESPACE
 
-// Cart and checkout. Keeps the temporary cart as (menu item id, quantity) pairs,
-// collects the loyalty points / account credit the customer wants to use, and shows
-// the totals CustomerWorkspace gets back from OrderController.
-class CheckoutView : public QWidget
-{
-    Q_OBJECT
+// manages the temporary cart and displays checkout information
+class CheckoutView : public QWidget {
+  Q_OBJECT
 
 public:
-    explicit CheckoutView(QWidget *parent = nullptr);
-    ~CheckoutView();
+  explicit CheckoutView(QWidget* parent = nullptr);
+  ~CheckoutView();
 
-    // cart contents
-    void addItem(const std::shared_ptr<MenuItem>& item, int quantity);
-    std::vector<std::pair<int, int>> getCartLines() const; // (menu item id, quantity)
-    int getCartItemCount() const;
+  // cart contents
+  void addItem(const std::shared_ptr<MenuItem>& item, int quantity);
+  std::vector<std::pair<int, int>> getCartLines() const;
+  int getCartItemCount() const;
 
-    // redemption choices
-    int getRequestedLoyaltyPoints() const;
-    int getRequestedAccountCreditCents() const;
-    void setAvailableBalances(int loyaltyPoints, int accountCreditCents);
+  // redemption choices
+  int getRequestedLoyaltyPoints() const;
+  int getRequestedAccountCreditCents() const;
+  void setAvailableBalances(int loyaltyPoints, int accountCreditCents);
 
-    void showPriceBreakdown(const PriceBreakdown& price);
-    void showMessage(const QString& message, bool isError);
+  void showPriceBreakdown(const PriceBreakdown& price);
+  void showMessage(const QString& message, bool isError);
 
-    // empty the cart after a successful order (keeps the message)
-    void clearCart();
+  // empty the cart after placing an order
+  void clearCart();
 
-    // reset everything on logout
-    void clear();
+  // reset the checkout on logout
+  void clear();
 
 signals:
-    void checkoutChanged();
-    void placeOrderRequested();
+  void checkoutChanged();
+  void placeOrderRequested();
 
 private slots:
-    void on_removeItemButton_clicked();
-    void on_clearCartButton_clicked();
-    void on_pointsSpinBox_valueChanged(int value);
-    void on_creditSpinBox_valueChanged(double value);
-    void on_placeOrderButton_clicked();
+  void on_removeItemButton_clicked();
+  void on_clearCartButton_clicked();
+  void on_pointsSpinBox_valueChanged(int value);
+  void on_creditSpinBox_valueChanged(double value);
+  void on_placeOrderButton_clicked();
 
 private:
-    void updateRow(int row);
+  void updateRow(int row);
 
-    Ui::CheckoutView *ui;
-    std::vector<std::pair<int, int>> cartLines; // same order as the table rows
+  Ui::CheckoutView* ui;
+  // each entry stores a menu item id and quantity
+  std::vector<std::pair<int, int>> cartLines;
+  int availableLoyaltyPoints = 0;
 };
 
-#endif // CHECKOUTVIEW_H
+#endif

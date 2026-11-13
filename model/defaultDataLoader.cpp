@@ -34,15 +34,15 @@ struct CustomerSeed {
 
 // five customer accounts with unique identification information
 const CustomerSeed customerSeeds[] = {
-  {"Mya Biagi", "mya.biagi", "LP-48219",
+  {"Mya Biagi", "mya.biagi", "0001",
    "mya.biagi@hintonville.ca", "14 Willow Lane, Hintonville"},
-  {"Finnick Stormrider", "finnick.stormrider", "LP-57304",
+  {"Finnick Stormrider", "finnick.stormrider", "0002",
    "finnick.stormrider@hintonville.ca", "8 Ember Court, Hintonville"},
-  {"Mira Willowstep", "mira.willowstep", "LP-61988",
+  {"Mira Willowstep", "mira.willowstep", "0003",
    "mira.willowstep@hintonville.ca", "27 Oakbridge Road, Hintonville"},
-  {"Cedric Ashborne", "cedric.ashborne", "LP-70412",
+  {"Cedric Ashborne", "cedric.ashborne", "0004",
    "cedric.ashborne@hintonville.ca", "3 Stonekettle Way, Hintonville"},
-  {"Lyra Moonwhisper", "lyra.moonwhisper", "LP-82567",
+  {"Lyra Moonwhisper", "lyra.moonwhisper", "0005",
    "lyra.moonwhisper@hintonville.ca", "19 Glacier Path, Hintonville"}
 };
 
