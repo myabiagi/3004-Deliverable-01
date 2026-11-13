@@ -47,3 +47,4 @@ The following full-project features are excluded from the Deliverable 1 prototyp
 - Manager menu/inventory editing and vendor orders
 - Administrator account creation and reports
 - Audit logs, session timeout, and database/file persistence
+- AODA accessibility compliance
