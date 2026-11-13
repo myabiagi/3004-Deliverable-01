@@ -9,9 +9,10 @@
 
 1. Extract the submission ZIP into a folder on the course VM. Keep the directory structure unchanged.
 2. Open Qt Creator. Select "File > Open File or Project", then open `DragonEndCafePOS.pro` from the extracted folder.
-3. Select "Build > Build Project" (or press Ctrl+B).
-4. Select "Build > Run" (or press Ctrl+R).
-5. The Dragon's End Café identification window appears.
+3. Select the installed "Desktop" kit when prompted.
+4. Select "Build > Build Project" (or press Ctrl+B).
+5. Select "Build > Run" (or press Ctrl+R).
+6. The Dragon's End Café identification window appears.
 
 ## Default account identifiers
 
